@@ -10,7 +10,7 @@ pipeline {
   }
   post {
    always {
-  archive 'dist/*.jar'
+  archiveArtifacts archive: 'dist/*.jar', finderprint: true
    }
   }
 }
