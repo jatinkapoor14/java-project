@@ -26,7 +26,7 @@ pipeline {
        sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
       }
     }
-	stage('Funtional testing') {
+    stage('Funtional testing') {
 	agent {docker 'openjdk:8u121-jre'}
      steps {
        sh "wget http://192.168.1.108/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
