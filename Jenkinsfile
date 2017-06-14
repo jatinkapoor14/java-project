@@ -29,7 +29,7 @@ pipeline {
     stage('Funtional testing') {
 	agent {docker 'docker.io/openjdk:8u121-jre'}
      steps {
-	   sh "echo "This is a test"
+	   sh 'echo "This is a test" > test.txt
       }
     }
   }
