@@ -37,7 +37,7 @@ pipeline {
 	   sh 'docker rm jatindock'
       }
     }
-	    stage('Funtional testing') {
+	    stage('Promote to green') {
 	agent {label 'master'}
 	when {branch 'master'}
      steps {
