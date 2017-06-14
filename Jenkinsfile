@@ -29,8 +29,7 @@ pipeline {
     stage('Funtional testing') {
 	agent {docker 'docker.io/openjdk:8u121-jre'}
      steps {
-       sh "wget http://192.168.1.108/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
-       sh "java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
+	   sh "echo "This is a test"
       }
     }
   }
