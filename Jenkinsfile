@@ -23,7 +23,7 @@ pipeline {
     stage('deploy') {
 	agent {label 'master'}
 	 steps {
-       sh "if ![ -d '/var/www/html/rectangles/all/${env.BRANCH_NAME}' ]; then mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}; fi"
+       sh "mkdir -p /var/www/html/rectangles/all/${env.BRANCH_NAME}"
 	   sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
       }
     }
@@ -32,7 +32,7 @@ pipeline {
      steps {
 	   sh 'docker run -itd --name jatindock openjdk:8u131-jre /bin/bash'
 	   sh "docker exec -i jatindock  wget http://192.168.1.108/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
-	   sh "docker exec -i jatindock java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
+	   sh " docker exec -i jatindock java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
 	   sh 'docker stop jatindock'
 	   sh 'docker rm jatindock'
       }
@@ -41,10 +41,10 @@ pipeline {
 	agent {label 'master'}
 	when {branch 'master'}
      steps {
-	   sh 'cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/green' 
+	   sh 'cp /var/www/html/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/green/' 
       }
     }
-	stage ('Promote Dev to master') {
+	stage('Promote Dev to master') {
 	agent {label 'master'}
 	when {branch 'development'}
 	  steps {
