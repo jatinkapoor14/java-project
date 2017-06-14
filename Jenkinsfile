@@ -30,7 +30,7 @@ pipeline {
     stage('Funtional testing') {
 	agent {label 'master'}
      steps {
-	   sh 'docker run -itd --name jatindock openjdk:8u131-jre /bin/bash'
+	   sh 'docker run -itd --name jatindock_${env.BRANCH_NAME}_${env.BUILD_NUMBER} openjdk:8u131-jre /bin/bash'
 	   sh "docker exec -i jatindock  wget http://192.168.1.108/rectangles/all/${env.BRANCH_NAME}/rectangle_${env.BUILD_NUMBER}.jar"
 	   sh " docker exec -i jatindock java -jar rectangle_${env.BUILD_NUMBER}.jar 3 4"
 	   sh 'docker stop jatindock'
