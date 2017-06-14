@@ -23,7 +23,7 @@ pipeline {
     stage('deploy') {
 	agent {label 'master'}
 	 steps {
-       sh "if ![ -d '/var/www/html/rectangles/all/${env.BRANCH_NAME}']; then mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}; fi"
+       sh "mkdir /var/www/html/rectangles/all/${env.BRANCH_NAME}"
 	   sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/${env.BRANCH_NAME}/"
       }
     }
