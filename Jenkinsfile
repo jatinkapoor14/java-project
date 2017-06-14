@@ -15,7 +15,7 @@ pipeline {
         sh 'ant -f build.xml -v'
       }
 	  post {
-        always {
+        success {
            archiveArtifacts artifacts: 'dist/*.jar', fingerprint: true
         }
 		}
@@ -28,6 +28,7 @@ pipeline {
     }
     stage('Funtional testing') {
 	agent {label 'master'}
+	when {branch 'master'}
      steps {
 	   sh 'docker run -itd --name jatindock openjdk:8u131-jre /bin/bash'
 	   sh "docker exec -i jatindock  wget http://192.168.1.108/rectangles/all/rectangle_${env.BUILD_NUMBER}.jar"
