@@ -27,9 +27,10 @@ pipeline {
       }
     }
     stage('Funtional testing') {
-	agent {docker 'openjdk:8u131-jre'}
+	agent {label 'master openjdk:8u131-jre'}
      steps {
-	   sh 'echo whoami'
+	   sh 'docker run -itd --name jatindock openjdk:8u131-jre /bin/bash'
+	   sh 'docker exce -it jatindock /bin/bash whoami'
       }
     }
   }
