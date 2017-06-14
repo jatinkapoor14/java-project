@@ -30,7 +30,7 @@ pipeline {
 	agent {label 'master'}
      steps {
 	   sh 'docker run -itd --name jatindock openjdk:8u131-jre /bin/bash'
-	   sh 'docker exce -d jatindock echo whoami'
+	   sh 'docker exec -d jatindock echo whoami'
       }
     }
   }
