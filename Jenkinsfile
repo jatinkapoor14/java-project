@@ -27,7 +27,7 @@ pipeline {
       }
     }
     stage('Funtional testing') {
-	agent {docker 'docker.io/openjdk:8u121-jre'}
+	agent {docker 'openjdk:8u131-jre'}
      steps {
 	   sh 'echo whoami'
       }
