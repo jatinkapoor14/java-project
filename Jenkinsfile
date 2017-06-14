@@ -52,6 +52,8 @@ pipeline {
 	  sh "git stash"
 	  echo "Checking out development brach"
 	  sh "git checkout development"
+	  echo "Checking out master"
+	  sh "git checkout master"
 	  echo "Merging development in to master brach"
 	  sh "git merge development"
 	  echo "Pushing to origin master"
