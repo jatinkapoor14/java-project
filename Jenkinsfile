@@ -37,7 +37,7 @@ pipeline {
 	   sh 'docker rm jatindock'
       }
     }
-	    stage('Promote to green') {
+	stage('Promote to green') {
 	agent {label 'master'}
 	when {branch 'master'}
      steps {
@@ -55,7 +55,7 @@ pipeline {
 	  echo "Merging development in to master brach"
 	  sh "git merge development"
 	  echo "Pushing to origin master"
-	  sh "git push orgin master"
+	  sh "git push origin master"
 	  }
 	}
   }
