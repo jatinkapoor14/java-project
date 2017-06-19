@@ -69,7 +69,7 @@ pipeline {
 	  echo "All Done!"
 	  }
 	    post {
-          failure{
+          success{
 	         emailtext(
 		       subject: "${env.JOB_NAME} [${env.BUILD_NUMBER}] Failed!",
                body: """<p>'${env.JOB_NAME} [${env.BUILD_NUMBER}]' Failed!":</p>
